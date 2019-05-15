@@ -33,6 +33,7 @@
 								. '<title>' . $this->sitename .'</title>'
 								. '<meta name="description" content="' . $this->description . '">'
 								. '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">'
+								. '<link rel="stylesheet" href="style.css">'
 							. '</head>'
 							. '<body>';
 			require_once("connect_to_mysql.php"); //return string $db_connection
@@ -55,7 +56,7 @@
 			return $this;
 		}
 		public function build_css(){
-			$strOut = 'zxcvbn';
+			$strOut = 'img{max-width: 100%; height: 250px; }';
 			$f = fopen($this->folder . '/style.css', "w"); 
 			fwrite($f, $strOut); 
 			fclose($f);
