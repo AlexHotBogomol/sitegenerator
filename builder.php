@@ -26,7 +26,7 @@
 			return $this;
 		}
 		public function build_homepage(){
-			$head = '<!DOCTYPE html>'
+			$head = ' <!DOCTYPE html>'
 							. '<html lang="en">'
 							. '<head>'
 								. '<meta charset="UTF-8">'
@@ -35,10 +35,13 @@
 								. '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">'
 							. '</head>'
 							. '<body>';
+			require_once("connect_to_mysql.php"); //return string $db_connection
+			require_once("functions.php"); //return string $db_connection
 			require_once("templates-part/header/header-{$this->header_type}.php"); //return string $header
 			require_once("templates-part/main/main-{$this->main_type}.php"); //return string $header
 			require_once("templates-part/footer/footer-{$this->footer_type}.php"); //return string $footer
-			$strOut = $head . $header . $main . $footer;
+			require_once("disconnect_mysql.php"); //return string $db_disconnect
+			$strOut = $db_connection . $functions . $head . $header . $main . $footer . $db_disconnect;
 			$f = fopen($this->folder . '/homepage.php', "w"); 
 			fwrite($f, $strOut); 
 			fclose($f);  

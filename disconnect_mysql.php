@@ -1,6 +1,6 @@
 <?php
-  // 5. Close database connection
-	if (isset($connection)) {
-	  mysqli_close($connection);
-	}
+  // Close database connection
+	$db_disconnect = ' <?php if (isset($connection)) { '
+	. ' mysqli_close($connection); '
+	. ' } ?> ';
 ?>
