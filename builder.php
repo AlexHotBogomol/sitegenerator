@@ -56,7 +56,7 @@
 			return $this;
 		}
 		public function build_css(){
-			$strOut = 'img{max-width: 100%; height: 250px; }';
+			$strOut = 'img{max-width: 100%;}';
 			$f = fopen($this->folder . '/style.css', "w"); 
 			fwrite($f, $strOut); 
 			fclose($f);
