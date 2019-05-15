@@ -21,13 +21,3 @@
 		. 	'</div>'
 		. '</div>'
 		.'</main>';
-
-		// $articles = get_all_posts();
-		// while($article = mysqli_fetch_assoc($articles)) {
-		// 	echo "<li>";
-		// 	$safe_article_id = urlencode($article["id"]);
-		// 	echo "<a href=\"single.php?article={$safe_article_id}\">";
-		// 	echo htmlentities($article["excerpt"]);
-		// 	echo "</a>";
-		// 	echo "</li>";
-		// }
