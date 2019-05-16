@@ -1,5 +1,5 @@
 <?php 
-	$footer = '<footer>'
+	return '<footer>'
 		. '<div class="container">'
 		. 	'<div class="row">'
 		. 		'<div class="col-7 bg-dark" style="height:100px;">'

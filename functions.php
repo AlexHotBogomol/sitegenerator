@@ -1,5 +1,5 @@
 <?php
-	$functions = ' <?php function get_all_posts(){ '
+	return ' <?php function get_all_posts(){ '
 	. '	global $connection; '
 		. '	$query  = "SELECT * "; '
 		. '	$query .= "FROM cat_articles "; '
@@ -7,7 +7,15 @@
 		. '	$articles_set = mysqli_query($connection, $query); '
 		. '	return $articles_set; '
 	. '	} '
-	. '	function get_posts_by_category($category){ '
+	. '	function get_all_categories(){ '
+		. '	global $connection; '
+		. '	$query  = "SELECT * "; '
+		. '	$query .= "FROM categories "; ' 
+		. '	$query .= "ORDER BY id ASC";  '
+		. '	$categories_set = mysqli_query($connection, $query); '
+		. '	return $categories_set; '
+	. '	} '
+	. '	function get_posts_by_category($category_id){ '
 		. '	global $connection; '
 		. '	$safe_category = mysqli_real_escape_string($connection, $category); '
 		. '	$query  = "SELECT * "; '
@@ -27,3 +35,5 @@
 		. '	return $article; '
 	. '	} ?>';
 ?>
+
+	

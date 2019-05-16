@@ -1,5 +1,5 @@
 <?php 
-	$header = '<header>'
+	return '<header>'
 		. '<div class="container">'
 		. 	'<div class="row">'
 		. 		'<div class="col-2 bg-success" style="height:100px;">'

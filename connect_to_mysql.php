@@ -1,6 +1,6 @@
 <?php
   // 1. Create a database connection
-  $db_connection = '<?php $dbhost = "localhost"; '
+  return '<?php $dbhost = "localhost"; '
   . ' $dbuser = "CSVimport_admin"; '
   . ' $dbpass = "111111"; '
   . ' $dbname = "CSVimport_db"; '
