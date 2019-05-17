@@ -17,15 +17,33 @@
 						<h1>Builder Form</h1>
 						<div class="form-group">
 							<label for="sitename"></label>
-							<input type="text" name="sitename" id="sitename" placeholder="sitename">
+							<input type="text" name="sitename" id="sitename" placeholder="Имя сайта(Будет названием папки, уйдет в title)" required="required">
 						</div>
 						<div class="form-group">
 							<label for="description"></label>
-							<input type="text" name="description" id="description" placeholder="description">
+							<input type="text" name="description" id="description" placeholder="Описание (Уйдет в description)" required="required">
+						</div>
+						<div class="form-group">
+							<label for="main_img"></label>
+							<input type="text" name="main_img" id="main_img" placeholder="Url основной картинки (Уйдет в баннер)" required="required">
+						</div>
+						<div class="form-group">
+							<label for="logo"></label>
+							<input type="text" name="logo" id="logo" placeholder="Url логотипа" required="required">
+						</div>
+						<div class="form-group">
+							<label for="main_color"></label>
+							<input type="text" name="main_color" id="main_color" placeholder="Основной цвет в формате hex" required="required">
+						</div>
+						<div class="form-group">
+							<h2>Choose stylesheet type</h2>
+							<select name="stylesheet_type" required="required">
+								<option value="1">First</option>
+							</select>
 						</div>
 						<div class="form-group">
 							<h2>Choose header type</h2>
-							<select name="header_type">
+							<select name="header_type" required="required">
 								<option value="1">First</option>
 								<option value="2">Second</option>
 								<option value="3">Third</option>
@@ -34,7 +52,7 @@
 						</div>
 						<div class="form-group">
 							<h2>Choose main type</h2>
-							<select name="main_type">
+							<select name="main_type" required="required">
 								<option value="1">First</option>
 								<option value="2">Second</option>
 								<option value="3">Third</option>
@@ -43,7 +61,7 @@
 						</div>
 						<div class="form-group">
 							<h2>Choose single type</h2>
-							<select name="single_type">
+							<select name="single_type" required="required">
 								<option value="1">First</option>
 								<option value="2">Second</option>
 								<option value="3">Third</option>
@@ -52,7 +70,7 @@
 						</div>
 						<div class="form-group">
 							<h2>Choose category type</h2>
-							<select name="category_type">
+							<select name="category_type" required="required">
 								<option value="1">First</option>
 								<option value="2">Second</option>
 								<option value="3">Third</option>
@@ -61,7 +79,7 @@
 						</div>
 						<div class="form-group">
 							<h2>Choose footer type</h2>
-							<select name="footer_type">
+							<select name="footer_type" required="required">
 								<option value="1">First</option>
 								<option value="2">Second</option>
 								<option value="3">Third</option>

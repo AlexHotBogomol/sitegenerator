@@ -2,13 +2,18 @@
 	if(empty($_POST)){
 		die();
 	}
+	require_once("help_functions.php");
 	/*====================================================
 										 PAGEBUILDER
 	====================================================*/
 	class PageBuilder{
 		const FINISH_FOLDER = 'createdSites/';
+		const POSTS_PER_PAGE = 2;
+		private $stylesheet_type;
 		private $sitename;
 		private $folder;
+		private $main_img;
+		private $logo;
 		private $header_type;
 		private $main_type;
 		private $footer_type;
@@ -27,7 +32,13 @@
 		public function __construct($post_array){
 			$this->sitename = $post_array["sitename"];
 			$this->description = $post_array["description"];
+			$this->main_img = $post_array["main_img"];
+			$this->logo = $post_array["logo"];
+			$this->main_color = $post_array["main_color"];
+			$this->lighter_color = different_shade(hex2rgb($this->main_color), "lighter", 10);
+			$this->darken_color = different_shade(hex2rgb($this->main_color), "darken", 20);
 			$this->folder = self::FINISH_FOLDER . $this->sitename;
+			$this->stylesheet_type =  $post_array["stylesheet_type"];
 			$this->header_type = $_POST["header_type"];
 			$this->main_type = $_POST["main_type"];
 			$this->single_type = $_POST["single_type"];
@@ -44,6 +55,7 @@
 			$this->category = require_once("templates-part/category/category-{$this->category_type}.php");
 			$this->footer = require_once("templates-part/footer/footer-{$this->footer_type}.php");
 			$this->db_disconnect = require_once("disconnect_mysql.php");
+			$this->stylesheet = require_once("templates-part/stylesheet/style-{$this->stylesheet_type}.php");
 		}
 		public function build_site_folder(){
 			if ( !file_exists($this->folder) && !is_dir($this->folder)) {
@@ -73,71 +85,7 @@
 			return $this;
 		}
 		public function build_css(){
-			$strOut = 'img{max-width: 100%;}
-									html {
-										font-family: Tahoma, Geneva, sans-serif;
-										padding: 20px;
-										background-color: #F8F9F9;
-									}
-									table {
-										border-collapse: collapse;
-										width: 500px;
-									}
-									td, th {
-										padding: 10px;
-									}
-									th {
-										background-color: #54585d;
-										color: #ffffff;
-										font-weight: bold;
-										font-size: 13px;
-										border: 1px solid #54585d;
-									}
-									td {
-										color: #636363;
-										border: 1px solid #dddfe1;
-									}
-									tr {
-										background-color: #f9fafb;
-									}
-									tr:nth-child(odd) {
-										background-color: #ffffff;
-									}
-									.pagination {
-										list-style-type: none;
-										padding: 10px 0;
-										display: inline-flex;
-										justify-content: space-between;
-										box-sizing: border-box;
-									}
-									.pagination li {
-										box-sizing: border-box;
-										padding-right: 10px;
-									}
-									.pagination li a {
-										box-sizing: border-box;
-										background-color: #e2e6e6;
-										padding: 8px;
-										text-decoration: none;
-										font-size: 12px;
-										font-weight: bold;
-										color: #616872;
-										border-radius: 4px;
-									}
-									.pagination li a:hover {
-										background-color: #d4dada;
-									}
-									.pagination .next a, .pagination .prev a {
-										text-transform: uppercase;
-										font-size: 12px;
-									}
-									.pagination .currentpage a {
-										background-color: #518acb;
-										color: #fff;
-									}
-									.pagination .currentpage a:hover {
-										background-color: #518acb;
-									}';
+			$strOut = $this->stylesheet;
 			$f = fopen($this->folder . '/style.css', "w"); 
 			fwrite($f, $strOut); 
 			fclose($f);
