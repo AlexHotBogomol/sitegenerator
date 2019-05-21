@@ -8,15 +8,30 @@
 	====================================================*/
 	class PageBuilder{
 		const FINISH_FOLDER = 'createdSites/';
-		const POSTS_PER_PAGE = 2;
-		private $stylesheet_type;
+		private $posts_per_page;
+		private $posts_on_homepage;
+		private $posts_per_row;
+		//Variables
 		private $sitename;
 		private $folder;
 		private $main_img;
 		private $logo;
 		private $header_type;
 		private $main_type;
+		private $single_type;
+		private $category_type;
 		private $footer_type;
+		private $stylesheet_type;
+		
+		//Stylesheet
+		private $main_color;
+		private $lighter_color;
+		private $darken_color;
+		private $text_color;
+		private $text_base_size;
+		private $text_font_family;
+
+		//Site Blocks
 		private $db_connection;
 		private $head;
 		private $head_single;
@@ -24,9 +39,7 @@
 		private $header;
 		private $main;
 		private $single;
-		private $single_type;
 		private $category;
-		private $category_type;
 		private $footer;
 		private $db_disconnect;
 		public function __construct($post_array){
@@ -34,16 +47,50 @@
 			$this->description = $post_array["description"];
 			$this->main_img = $post_array["main_img"];
 			$this->logo = $post_array["logo"];
-			$this->main_color = $post_array["main_color"];
-			$this->lighter_color = different_shade(hex2rgb($this->main_color), "lighter", 10);
-			$this->darken_color = different_shade(hex2rgb($this->main_color), "darken", 20);
 			$this->folder = self::FINISH_FOLDER . $this->sitename;
-			$this->stylesheet_type =  $post_array["stylesheet_type"];
+
+
 			$this->header_type = $_POST["header_type"];
 			$this->main_type = $_POST["main_type"];
 			$this->single_type = $_POST["single_type"];
 			$this->category_type = $_POST["category_type"];
 			$this->footer_type = $_POST["footer_type"];
+
+			$this->posts_per_page = $_POST["posts_per_page"];
+			$this->posts_on_homepage = $_POST["posts_on_homepage"];
+			$this->posts_per_row = $_POST["posts_per_row"];
+
+			$this->footer_text = $_POST["footer_text"];
+			$this->footer_align = $_POST["footer_align"];
+			$this->footer_bg = $_POST["footer_bg"];
+			$this->footer_text_color = $_POST["footer_text_color"];
+
+			$this->main_color = $post_array["main_color"];
+			$this->lighter_color = different_shade(hex2rgb($this->main_color), "lighter", 10);
+			$this->darken_color = different_shade(hex2rgb($this->main_color), "darken", 20);
+			$this->text_color = $post_array["text_color"];
+			$this->text_base_size = $post_array["text_base_size"] . "px";
+			switch ($post_array["text_font_family"]){
+				case 'Ubuntu':
+					$this->text_font_family = "Ubuntu, Arial, sans-serif";
+					break;
+				case 'Open Sans':
+					$this->text_font_family = "Open Sans, Arial, sans-serif";
+					break;
+				case 'Roboto':
+					$this->text_font_family = "Roboto, Arial, sans-serif";
+					break;
+				case 'Lato':
+					$this->text_font_family = "Lato, Arial, sans-serif";
+					break;
+				case 'Poppins':
+					$this->text_font_family = "Poppins, Arial, sans-serif";
+					break;
+			}
+			$this->stylesheet_type =  $post_array["stylesheet_type"];
+			$this->calculate_site_blocks();
+		}
+		public function calculate_site_blocks(){
 			$this->db_connection = require_once("connect_to_mysql.php"); 
 			$this->functions = require_once("functions.php");
 			$this->head = require_once("templates-part/head.php");
@@ -65,7 +112,7 @@
 		}
 		public function build_homepage(){
 			$strOut = $this->db_connection . $this->functions . $this->head . $this->header . $this->main . $this->footer . $this->db_disconnect;
-			$f = fopen($this->folder . '/homepage.php', "w"); 
+			$f = fopen($this->folder . '/index.php', "w"); 
 			fwrite($f, $strOut); 
 			fclose($f);  
 			return $this;
@@ -92,7 +139,7 @@
 			return $this;
 		}
 		public function render(){
-			echo "<a href='{$this->folder}/homepage.php'>homepage</a>";
+			echo "<a href='{$this->folder}/'>homepage</a>";
 			return $this -> build_site_folder() -> build_homepage() -> build_single() -> build_category() -> build_css();
 		}
 	}

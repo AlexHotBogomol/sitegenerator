@@ -1,15 +1,15 @@
 <?php
-	return '<main>
+	return '<main style="padding-bottom: 100px;">
 						<div class="container">
 							<div class="row">
 								<div class="col-9 main__content">
 									<div class="row">
 										<div class="col-12">
-											<div class="single__img">
-												<h1 class="single__title"><?php echo $article["title"]; ?></h1>
-												<img src="<?php echo $article["img_link"]; ?>">
-												<p class="single__description"><?php echo $article["description"]; ?></p>
-											</div>
+											<h2 class="main__heading">
+												<?php echo $article["title"]; ?>
+											</h2>
+											<img class="single__img" src="<?php echo $article["img_link"]; ?>">
+											<p class="single__description"><?php echo $article["description"]; ?></p>
 										</div>
 									</div>
 								</div>
