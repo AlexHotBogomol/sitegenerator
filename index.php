@@ -113,6 +113,18 @@
 							</div>
 						</div>
 						<h3 class="text-center">Верхняя панель</h3>
+						<h3 class="text-center">Сайдбар</h3>
+						<div class="row">
+							<div class="col-3">
+								<div class="form-group">
+									<p>Положение сайдбара</p>
+									<select name="sidebar_align" required="required">
+										<option value="left">Слева</option>
+										<option value="right">Справа</option>
+									</select>
+								</div>
+							</div>
+						</div>
 						<h3 class="text-center">Футер</h3>
 						<div class="row">
 							<div class="col-3">

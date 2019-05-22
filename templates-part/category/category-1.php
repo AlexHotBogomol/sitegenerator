@@ -1,4 +1,9 @@
 <?php 
+	if($this->sidebar_align == "left"){
+		$flex_direction = "flex-row-reverse";
+	}else{
+		$flex_direction = "flex-row";
+	}
 	return '<main style="padding-bottom: 100px;">
 						<div class="container">
 							<div class="row">
@@ -6,8 +11,9 @@
 									<h2 class="main__heading"><?php echo $category["category_name"]; ?></h2>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-9 main__content">
+							<div class="row ' . $flex_direction . '">
+
+								<div class="col-8 main__content">
 									<div class="row">
 										<?php 
 											$total_articles = get_posts_by_category($category["id"])->num_rows; 
@@ -22,7 +28,9 @@
 											while($article = mysqli_fetch_assoc($result)) { 
 											echo "<div class=\"col-6\">"; 
 												echo "<div class=\"post_card\">";
-													echo "<img src=\"{$article["img_link"]}\">"; 
+													echo "<div class=\"card__img\">";
+														echo "<img src=\"{$article["img_link"]}\">"; 
+													echo "</div>";
 													$safe_article_id = urlencode($article["id"]); 
 														echo "<a href=\"single.php?article={$safe_article_id}\">";  
 															echo htmlentities($article["title"]); 
@@ -35,8 +43,13 @@
 											} 
 										?>
 									</div>
+									<div class="row">
+										<?php $page_name = "category.php?category=$category_id&page"; ?>
+										<?php display_pagination_on_page($page_name, $page, $total_articles, $num_results_on_page); ?> 
+									</div>
 								</div>
-								<div class="col-3 bg-info sidebar">
+								<div class="col-1"></div>
+								<div class="col-3 sidebar">
 									<h4>Все категории</h4>
 									<ul>
 										<?php 
@@ -53,10 +66,7 @@
 									</ul>
 								</div> 
 							</div>
-							<div class="row">
-								<?php $page_name = "category.php?category=$category_id&page"; ?>
-								<?php display_pagination_on_page($page_name, $page, $total_articles, $num_results_on_page); ?> 
-							</div>
+							
 						</div>
 					</main>
 					<?php 

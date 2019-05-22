@@ -146,7 +146,7 @@
 					</head>
 					<body class="single"><div class="wrapper">
 						<div class="content">	
-							<header>
+							<header class="header">
 								<div class="top-panel bg-white" style="padding: 15px 0;">
 									<div class="container">
 										<div class="row">
@@ -155,31 +155,53 @@
 													<a href="./">
 														<img src="https://res.cloudinary.com/emailsandereverest/image/upload/v1558083941/oilcbd/logo.png" alt = "MyFirstSite">
 													</a>
-													<a href="./" class="text-dark">
-														Home
-													</a>	
+													<nav class="nav">
+														<ul class="menu">
+															<li class="menu-item">
+																<a class="menu-link" href="./">
+																	Home
+																</a>	
+															</li>
+
+															<li class="menu-item">
+																<span class="menu-link">Categories</span>
+																<ul class="sub-menu">
+																<?php 
+																	$categories_set = get_all_categories(); 
+																	while($category_item = mysqli_fetch_assoc($categories_set)) { 
+																		echo "<li class=\"sub-menu-item\">"; 
+																			$safe_category_id = urlencode($category_item["id"]); 
+																	    echo "<a class=\"menu-link\" href=\"category.php?category={$safe_category_id}\">";  
+																	    	echo htmlentities($category_item["category_name"]);  
+																			echo "</a>"; 
+																		echo "</li>"; 
+																	} 
+																	mysqli_free_result($categories_set);
+																 ?>
+																</ul>
+															</li>
+														</ul>	
+													</nav>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="header_banner" style="background: url(https://res.cloudinary.com/emailsandereverest/image/upload/v1558083944/oilcbd/first-bg.jpg) no-repeat center top / cover; height: 600px;">
+								<div class="header_banner" style="background: url(https://res.cloudinary.com/emailsandereverest/image/upload/v1558083944/oilcbd/first-bg.jpg) no-repeat center top / cover;">
+									
 								</div>
 							</header><main style="padding-bottom: 100px;">
 						<div class="container">
-							<div class="row">
-								<div class="col-9 main__content">
-									<div class="row">
-										<div class="col-12">
-											<h2 class="main__heading">
-												<?php echo $article["title"]; ?>
-											</h2>
-											<img class="single__img" src="<?php echo $article["img_link"]; ?>">
-											<p class="single__description"><?php echo $article["description"]; ?></p>
-										</div>
-									</div>
+							<div class="row flex-row">
+								<div class="col-8 main__content">
+									<h2 class="main__heading">
+										<?php echo $article["title"]; ?>
+									</h2>
+									<img class="single__img" src="<?php echo $article["img_link"]; ?>">
+									<p class="single__description"><?php echo $article["description"]; ?></p>
 								</div>
-								<div class="col-3 bg-info sidebar">
+								<div class="col-1"></div>
+								<div class="col-3 sidebar">
 									<h4>Все статьи из этой категории: </h4>
 									<ul>
 										<?php 
@@ -202,12 +224,12 @@
 							</div>
 						</div>
 					</main></div>
-						<footer style="background: #111;">
+						<footer class="footer" style="background: #111;">
 								<div class="container">
 									<div class="row">
 										<div class="col-12">
 											<p style="color: #fff; text-align: center; ">
-												Текст в футере...
+												Теasfsafafsasf
 											</p>
 										</div>
 									</div>

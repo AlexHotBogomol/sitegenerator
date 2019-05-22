@@ -38,7 +38,9 @@
 													echo "<div class=\"col-6\">"; 
 												}
 													echo "<div class=\"post_card\">";
-														echo "<img src=\"{$article["img_link"]}\">"; 
+														echo "<div class=\"card__img\">";
+															echo "<img src=\"{$article["img_link"]}\">"; 
+														echo "</div>";	 
 														$safe_article_id = urlencode($article["id"]); 
 													  echo "<a href=\"single.php?article={$safe_article_id}\">"; 
 													  echo htmlentities($article["title"]); 

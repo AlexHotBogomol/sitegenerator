@@ -1,19 +1,21 @@
 <?php
+	if($this->sidebar_align == "left"){
+		$flex_direction = "flex-row-reverse";
+	}else{
+		$flex_direction = "flex-row";
+	}
 	return '<main style="padding-bottom: 100px;">
 						<div class="container">
-							<div class="row">
-								<div class="col-9 main__content">
-									<div class="row">
-										<div class="col-12">
-											<h2 class="main__heading">
-												<?php echo $article["title"]; ?>
-											</h2>
-											<img class="single__img" src="<?php echo $article["img_link"]; ?>">
-											<p class="single__description"><?php echo $article["description"]; ?></p>
-										</div>
-									</div>
+							<div class="row ' . $flex_direction . '">
+								<div class="col-8 main__content">
+									<h2 class="main__heading">
+										<?php echo $article["title"]; ?>
+									</h2>
+									<img class="single__img" src="<?php echo $article["img_link"]; ?>">
+									<p class="single__description"><?php echo $article["description"]; ?></p>
 								</div>
-								<div class="col-3 bg-info sidebar">
+								<div class="col-1"></div>
+								<div class="col-3 sidebar">
 									<h4>Все статьи из этой категории: </h4>
 									<ul>
 										<?php 

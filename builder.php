@@ -22,6 +22,7 @@
 		private $category_type;
 		private $footer_type;
 		private $stylesheet_type;
+		private $sidebar_align;
 		
 		//Stylesheet
 		private $main_color;
@@ -60,13 +61,15 @@
 			$this->posts_on_homepage = $_POST["posts_on_homepage"];
 			$this->posts_per_row = $_POST["posts_per_row"];
 
+			$this->sidebar_align = $_POST["sidebar_align"];
+
 			$this->footer_text = $_POST["footer_text"];
 			$this->footer_align = $_POST["footer_align"];
 			$this->footer_bg = $_POST["footer_bg"];
 			$this->footer_text_color = $_POST["footer_text_color"];
 
 			$this->main_color = $post_array["main_color"];
-			$this->lighter_color = different_shade(hex2rgb($this->main_color), "lighter", 10);
+			$this->lighter_color = different_shade(hex2rgb($this->main_color), "lighter", 20);
 			$this->darken_color = different_shade(hex2rgb($this->main_color), "darken", 20);
 			$this->text_color = $post_array["text_color"];
 			$this->text_base_size = $post_array["text_base_size"] . "px";

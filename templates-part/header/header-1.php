@@ -1,7 +1,7 @@
 <?php 
 	return '<div class="wrapper">
 						<div class="content">	
-							<header>
+							<header class="header">
 								<div class="top-panel bg-white" style="padding: 15px 0;">
 									<div class="container">
 										<div class="row">
@@ -10,15 +10,40 @@
 													<a href="./">
 														<img src="' . $this->logo . '" alt = "' . $this->sitename . '">
 													</a>
-													<a href="./" class="text-dark">
-														Home
-													</a>	
+													<nav class="nav">
+														<ul class="menu">
+															<li class="menu-item">
+																<a class="menu-link" href="./">
+																	Home
+																</a>	
+															</li>
+
+															<li class="menu-item">
+																<span class="menu-link">Categories</span>
+																<ul class="sub-menu">
+																<?php 
+																	$categories_set = get_all_categories(); 
+																	while($category_item = mysqli_fetch_assoc($categories_set)) { 
+																		echo "<li class=\"sub-menu-item\">"; 
+																			$safe_category_id = urlencode($category_item["id"]); 
+																	    echo "<a class=\"menu-link\" href=\"category.php?category={$safe_category_id}\">";  
+																	    	echo htmlentities($category_item["category_name"]);  
+																			echo "</a>"; 
+																		echo "</li>"; 
+																	} 
+																	mysqli_free_result($categories_set);
+																 ?>
+																</ul>
+															</li>
+														</ul>	
+													</nav>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="header_banner" style="background: url(' . $this->main_img . ') no-repeat center top / cover; height: 600px;">
+								<div class="header_banner" style="background: url(' . $this->main_img . ') no-repeat center top / cover;">
+									
 								</div>
 							</header>';
 ?>

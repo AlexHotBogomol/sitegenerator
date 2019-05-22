@@ -1,6 +1,6 @@
 <?php 
 		return '</div>
-						<footer style="background: ' . $this->footer_bg . ';">
+						<footer class="footer" style="background: ' . $this->footer_bg . ';">
 								<div class="container">
 									<div class="row">
 										<div class="col-12">
