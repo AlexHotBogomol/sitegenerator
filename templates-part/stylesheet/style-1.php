@@ -210,5 +210,14 @@
 					.home .card__img{
 						height: ' . $imgHeight . ';
 					}
+					@media only screen and (max-width: 575px){
+						.home .card__img {
+						    width: 300px;
+						}
+						.post_card {
+					    width: 300px;
+					    margin: 0 auto 30px;
+						}
+					}
 					';
 			

@@ -9,8 +9,6 @@
 			width: 100%;
 			margin-bottom: 15px;
 		}
-		h1{
-		}
 		h3{
 			padding-top: 20px;
 			padding-bottom: 40px;
@@ -27,6 +25,25 @@
 					 method="post"
 					 action="builder.php">
 						<h1 class="text-center">Builder Form</h1>
+						<h3 class="text-center">Подключение к БД</h3>
+						<div class="row">
+							<div class="col-3">
+								<label for="dbhost">Хост (обычно localhost)</label>
+								<input type="text" name="dbhost" id="dbhost" required="required">
+							</div>
+							<div class="col-3">
+								<label for="dbuser">Имя пользователя БД</label>
+								<input type="text" name="dbuser" id="dbuser" required="required">
+							</div>
+							<div class="col-3">
+								<label for="dbpass">Пароль пользователя БД</label>
+								<input type="text" name="dbpass" id="dbpass" required="required">
+							</div>
+							<div class="col-3">
+								<label for="dbname">Имя БД</label>
+								<input type="text" name="dbname" id="dbname" required="required">
+							</div>
+						</div>
 						<h3 class="text-center">Основные</h3>
 						<div class="row">
 							<div class="col-3">
@@ -34,7 +51,7 @@
 								<input type="text" name="sitename" id="sitename" required="required">
 							</div>
 							<div class="col-3">
-								<label for="sitename">Описание (Уйдет в description)</label>
+								<label for="description">Описание (Уйдет в description)</label>
 								<input type="text" name="description" id="description" required="required">
 							</div>
 							<div class="col-3">

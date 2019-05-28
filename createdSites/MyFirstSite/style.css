@@ -4,10 +4,10 @@ html, body{
 						height: 100%;
 						color: #000;
 						font-size: 18px;
-						font-family: Roboto, Arial, sans-serif;
+						font-family: Ubuntu, Arial, sans-serif;
 					}
 					h1, h2, h3, h4, h5, h6{
-						font-family: Roboto, Arial, sans-serif;
+						font-family: Ubuntu, Arial, sans-serif;
 					}
 					.wrapper {
 					  display: flex;
@@ -201,5 +201,14 @@ html, body{
 					}
 					.home .card__img{
 						height: 220px;
+					}
+					@media only screen and (max-width: 575px){
+						.home .card__img {
+						    width: 300px;
+						}
+						.post_card {
+					    width: 300px;
+					    margin: 0 auto 30px;
+						}
 					}
 					

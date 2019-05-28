@@ -8,6 +8,12 @@
 	====================================================*/
 	class PageBuilder{
 		const FINISH_FOLDER = 'createdSites/';
+		//DataBase
+		private $dbhost;
+		private $dbuser;
+		private $dbpass;
+		private $dbname;
+		//Posts
 		private $posts_per_page;
 		private $posts_on_homepage;
 		private $posts_per_row;
@@ -44,12 +50,17 @@
 		private $footer;
 		private $db_disconnect;
 		public function __construct($post_array){
+			//DataBase
+			$this->dbhost = "'" . $post_array["dbhost"] . "'";
+			$this->dbuser = "'" . $post_array["dbuser"] . "'";
+			$this->dbpass = "'" . $post_array["dbpass"] . "'";
+			$this->dbname = "'" . $post_array["dbname"] . "'";
+
 			$this->sitename = $post_array["sitename"];
 			$this->description = $post_array["description"];
 			$this->main_img = $post_array["main_img"];
 			$this->logo = $post_array["logo"];
 			$this->folder = self::FINISH_FOLDER . $this->sitename;
-
 
 			$this->header_type = $_POST["header_type"];
 			$this->main_type = $_POST["main_type"];
@@ -95,7 +106,6 @@
 		}
 		public function calculate_site_blocks(){
 			$this->db_connection = require_once("connect_to_mysql.php"); 
-			$this->functions = require_once("functions.php");
 			$this->head = require_once("templates-part/head.php");
 			$this->head_single = require_once("templates-part/head_single.php");
 			$this->head_category = require_once("templates-part/head_category.php");
@@ -113,22 +123,29 @@
 			} 
 			return $this;
 		}
+	 	public function copy_helpers(){
+	 		copy('helpers/functions.php', $this->folder . '/functions.php');
+	 		copy('helpers/.htaccess', $this->folder . '/.htaccess');
+	 		copy('helpers/sitemap.class.php', $this->folder . '/sitemap.class.php');
+	 		copy('helpers/generateSitemap.php', $this->folder . '/generateSitemap.php');
+	 		return $this;
+	 	}
 		public function build_homepage(){
-			$strOut = $this->db_connection . $this->functions . $this->head . $this->header . $this->main . $this->footer . $this->db_disconnect;
+			$strOut = $this->db_connection . $this->head . $this->header . $this->main . $this->footer . $this->db_disconnect;
 			$f = fopen($this->folder . '/index.php', "w"); 
 			fwrite($f, $strOut); 
 			fclose($f);  
 			return $this;
 		}
 		public function build_single(){
-			$strOut = $this->db_connection . $this->functions . $this->head_single . $this->header . $this->single . $this->footer . $this->db_disconnect;
+			$strOut = $this->db_connection . $this->head_single . $this->header . $this->single . $this->footer . $this->db_disconnect;
 			$f = fopen($this->folder . '/single.php', "w"); 
 			fwrite($f, $strOut); 
 			fclose($f);
 			return $this;
 		}
 		public function build_category(){
-			$strOut = $this->db_connection . $this->functions . $this->head_category . $this->header . $this->category . $this->footer . $this->db_disconnect;
+			$strOut = $this->db_connection . $this->head_category . $this->header . $this->category . $this->footer . $this->db_disconnect;
 			$f = fopen($this->folder . '/category.php', "w"); 
 			fwrite($f, $strOut); 
 			fclose($f);
@@ -142,8 +159,8 @@
 			return $this;
 		}
 		public function render(){
-			echo "<a href='{$this->folder}/'>homepage</a>";
-			return $this -> build_site_folder() -> build_homepage() -> build_single() -> build_category() -> build_css();
+			// echo "<a href='{$this->folder}/'>homepage</a>";
+			return $this -> build_site_folder() -> copy_helpers() ->  build_homepage() -> build_single() -> build_category() -> build_css();
 		}
 	}
 	$pageBuilder = new PageBuilder($_POST);

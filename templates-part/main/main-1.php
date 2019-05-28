@@ -13,9 +13,9 @@
 												$categories = get_all_categories(); 
 												while($category = mysqli_fetch_assoc($categories)) { 
 													echo "<li>"; 
-													$safe_category_id = urlencode($category["id"]); 
-										   		echo "<a href=\"category.php?category={$safe_category_id}\">";  
-										  		echo htmlentities($category["category_name"]); 
+														$safe_category_name = urlencode($category["category_name"]); 
+											   		echo "<a href=\"/category/{$safe_category_name}\">";  
+											  			echo htmlentities($category["category_name"]); 
 														echo "</a>"; 
 													echo "</li>"; 
 												} 
@@ -31,18 +31,18 @@
 											$total_articles = get_last_posts(' . $this->posts_on_homepage . ');
 											while($article = mysqli_fetch_assoc($total_articles)) { 
 												if( ' . $this->posts_per_row . ' == 3){
-													echo "<div class=\"col-4\">"; 
+													echo "<div class=\"col-md-4 col-sm-6\">"; 
 												}else if( ' . $this->posts_per_row . ' == 4){
-													echo "<div class=\"col-3\">"; 
+													echo "<div class=\"col-md-3 col-sm-6\">"; 
 												}else{
-													echo "<div class=\"col-6\">"; 
+													echo "<div class=\"col-sm-6\">"; 
 												}
 													echo "<div class=\"post_card\">";
 														echo "<div class=\"card__img\">";
 															echo "<img src=\"{$article["img_link"]}\">"; 
 														echo "</div>";	 
-														$safe_article_id = urlencode($article["id"]); 
-													  echo "<a href=\"single.php?article={$safe_article_id}\">"; 
+														$safe_article_name = urlencode($article["title"]); 
+													  echo "<a href=\"/article/{$safe_article_name}\">"; 
 													  echo htmlentities($article["title"]); 
 														echo "</a>"; 
 														echo "<p>"; 

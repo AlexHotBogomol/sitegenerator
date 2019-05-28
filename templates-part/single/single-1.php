@@ -26,8 +26,8 @@
 										 }else{ 
 										  echo "<li>"; 	
 										 } 
-										$safe_post_id = urlencode($post["id"]); 
-										  echo "<a href=\"single.php?article={$safe_post_id}\">";  
+										$safe_post_title = urlencode($post["title"]); 
+										  echo "<a href=\"/article/{$safe_post_title}\">";  
 						 				  echo htmlentities($post["title"]); 
 											echo "</a>"; 
 										echo "</li>"; 

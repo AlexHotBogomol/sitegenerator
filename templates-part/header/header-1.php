@@ -7,13 +7,13 @@
 										<div class="row">
 											<div class="col-12">
 												<div class="header__menu d-flex justify-content-between align-items-center">
-													<a href="./">
+													<a href="/">
 														<img src="' . $this->logo . '" alt = "' . $this->sitename . '">
 													</a>
 													<nav class="nav">
 														<ul class="menu">
 															<li class="menu-item">
-																<a class="menu-link" href="./">
+																<a class="menu-link" href="/">
 																	Home
 																</a>	
 															</li>
@@ -25,8 +25,8 @@
 																	$categories_set = get_all_categories(); 
 																	while($category_item = mysqli_fetch_assoc($categories_set)) { 
 																		echo "<li class=\"sub-menu-item\">"; 
-																			$safe_category_id = urlencode($category_item["id"]); 
-																	    echo "<a class=\"menu-link\" href=\"category.php?category={$safe_category_id}\">";  
+																			$safe_category_name = urlencode($category_item["category_name"]); 
+																	    echo "<a class=\"menu-link\" href=\"/category/{$safe_category_name}\">";  
 																	    	echo htmlentities($category_item["category_name"]);  
 																			echo "</a>"; 
 																		echo "</li>"; 
