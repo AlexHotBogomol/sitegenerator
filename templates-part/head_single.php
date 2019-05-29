@@ -1,7 +1,6 @@
 <?php
 	return '<?php require_once("functions.php");?>
-					<?php
-						if(!(isset($_GET) && !empty($_GET))){ 
+					<?php if(!(isset($_GET) && !empty($_GET))){ 
 							echo "wrong link"; 
 							die();
 						}

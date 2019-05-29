@@ -1,5 +1,5 @@
 <?php 
-          $connection = mysqli_connect('localhost', 'a43349_site_adm', 'QbtnQhngoORCvR!o', 'a43349_site_db');
+          $connection = mysqli_connect('localhost', 'CSVimport_admin', '111111', 'CSVimport_db');
           if(mysqli_connect_errno()) {
             die("Database connection failed: " . 
               mysqli_connect_error() . 
@@ -77,7 +77,7 @@
 									<h2 class="main__heading"><?php echo $category["category_name"]; ?></h2>
 								</div>
 							</div>
-							<div class="row flex-row">
+							<div class="row flex-row-reverse">
 								<div class="col-8 main__content">
 									<div class="row">
 										<?php 

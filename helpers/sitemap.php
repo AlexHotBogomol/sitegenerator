@@ -12,5 +12,5 @@
 
 	header ("content-type: text/xml");
 	$map = $sitemap->generate_sitemap();
-	file_put_contents("sitemap.xml", $map);
+	echo $map;
 ?>

@@ -1,5 +1,5 @@
 <?php 
-          $connection = mysqli_connect('localhost', 'a43349_site_adm', 'QbtnQhngoORCvR!o', 'a43349_site_db');
+          $connection = mysqli_connect('localhost', 'CSVimport_admin', '111111', 'CSVimport_db');
           if(mysqli_connect_errno()) {
             die("Database connection failed: " . 
               mysqli_connect_error() . 
@@ -7,8 +7,7 @@
               );
             }
           ?><?php require_once("functions.php");?>
-					<?php
-						if(!(isset($_GET) && !empty($_GET))){ 
+					<?php if(!(isset($_GET) && !empty($_GET))){ 
 							echo "wrong link"; 
 							die();
 						}
@@ -73,7 +72,7 @@
 								</div>
 							</header><main style="padding-bottom: 100px;">
 						<div class="container">
-							<div class="row flex-row">
+							<div class="row flex-row-reverse">
 								<div class="col-8 main__content">
 									<h2 class="main__heading">
 										<?php echo $article["title"]; ?>

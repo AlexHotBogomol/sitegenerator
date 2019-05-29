@@ -200,7 +200,7 @@ html, body{
 				    margin-bottom: 20px;
 					}
 					.home .card__img{
-						height: 220px;
+						height: 340px;
 					}
 					@media only screen and (max-width: 575px){
 						.home .card__img {

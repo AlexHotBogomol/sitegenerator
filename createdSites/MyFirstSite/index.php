@@ -1,5 +1,5 @@
 <?php 
-          $connection = mysqli_connect('localhost', 'a43349_site_adm', 'QbtnQhngoORCvR!o', 'a43349_site_db');
+          $connection = mysqli_connect('localhost', 'CSVimport_admin', '111111', 'CSVimport_db');
           if(mysqli_connect_errno()) {
             die("Database connection failed: " . 
               mysqli_connect_error() . 
@@ -95,9 +95,9 @@
 										<?php 
 											$total_articles = get_last_posts(10);
 											while($article = mysqli_fetch_assoc($total_articles)) { 
-												if( 3 == 3){
+												if( 2 == 3){
 													echo "<div class=\"col-md-4 col-sm-6\">"; 
-												}else if( 3 == 4){
+												}else if( 2 == 4){
 													echo "<div class=\"col-md-3 col-sm-6\">"; 
 												}else{
 													echo "<div class=\"col-sm-6\">"; 

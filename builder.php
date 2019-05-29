@@ -126,8 +126,10 @@
 	 	public function copy_helpers(){
 	 		copy('helpers/functions.php', $this->folder . '/functions.php');
 	 		copy('helpers/.htaccess', $this->folder . '/.htaccess');
+	 		copy('helpers/robots.php', $this->folder . '/robots.php');
 	 		copy('helpers/sitemap.class.php', $this->folder . '/sitemap.class.php');
-	 		copy('helpers/generateSitemap.php', $this->folder . '/generateSitemap.php');
+	 		copy('helpers/sitemap.php', $this->folder . '/sitemap.php');
+	 		
 	 		return $this;
 	 	}
 		public function build_homepage(){
@@ -159,7 +161,6 @@
 			return $this;
 		}
 		public function render(){
-			// echo "<a href='{$this->folder}/'>homepage</a>";
 			return $this -> build_site_folder() -> copy_helpers() ->  build_homepage() -> build_single() -> build_category() -> build_css();
 		}
 	}
